@@ -19,7 +19,7 @@ const int a_clima = 12;
 const int a_calefaccion = 11;
 
 void setup(){
-  pinMode(luces, OUTPUT); //declaramos el PIN 13 como salida
+  pinMode(a_luces, OUTPUT); //declaramos el PIN 13 como salida
   Serial.begin(9600);  
 }
 
