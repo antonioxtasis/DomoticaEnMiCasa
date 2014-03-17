@@ -186,7 +186,7 @@ namespace DomoticaEnMiCasa
         {
             if (serialPort1.IsOpen)
             {
-                Debug.Assert(false);
+                Debug.Assert(true);
                 serialPort1.Close();
             }
         }

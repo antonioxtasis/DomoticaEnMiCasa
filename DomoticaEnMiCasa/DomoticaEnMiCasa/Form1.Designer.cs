@@ -77,7 +77,7 @@
             // 
             // btn_encender_clima
             // 
-            this.btn_encender_clima.Location = new System.Drawing.Point(220, 31);
+            this.btn_encender_clima.Location = new System.Drawing.Point(116, 31);
             this.btn_encender_clima.Name = "btn_encender_clima";
             this.btn_encender_clima.Size = new System.Drawing.Size(98, 45);
             this.btn_encender_clima.TabIndex = 7;
@@ -87,7 +87,7 @@
             // 
             // btn_encender_calefaccion
             // 
-            this.btn_encender_calefaccion.Location = new System.Drawing.Point(324, 31);
+            this.btn_encender_calefaccion.Location = new System.Drawing.Point(116, 82);
             this.btn_encender_calefaccion.Name = "btn_encender_calefaccion";
             this.btn_encender_calefaccion.Size = new System.Drawing.Size(98, 45);
             this.btn_encender_calefaccion.TabIndex = 10;
@@ -117,10 +117,10 @@
             // 
             // btn_siri
             // 
-            this.btn_siri.BackColor = System.Drawing.Color.WhiteSmoke;
-            this.btn_siri.Location = new System.Drawing.Point(220, 108);
+            this.btn_siri.BackColor = System.Drawing.Color.LightBlue;
+            this.btn_siri.Location = new System.Drawing.Point(232, 31);
             this.btn_siri.Name = "btn_siri";
-            this.btn_siri.Size = new System.Drawing.Size(202, 67);
+            this.btn_siri.Size = new System.Drawing.Size(190, 96);
             this.btn_siri.TabIndex = 13;
             this.btn_siri.Text = "Siri...";
             this.btn_siri.UseVisualStyleBackColor = false;
@@ -128,12 +128,12 @@
             // 
             // textBox2
             // 
-            this.textBox2.Location = new System.Drawing.Point(473, 65);
+            this.textBox2.Location = new System.Drawing.Point(473, 32);
             this.textBox2.Multiline = true;
             this.textBox2.Name = "textBox2";
             this.textBox2.ReadOnly = true;
             this.textBox2.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-            this.textBox2.Size = new System.Drawing.Size(292, 184);
+            this.textBox2.Size = new System.Drawing.Size(314, 217);
             this.textBox2.TabIndex = 16;
             this.textBox2.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.textBox2_KeyPress);
             // 
@@ -141,16 +141,17 @@
             // 
             this.label3.AutoSize = true;
             this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label3.Location = new System.Drawing.Point(469, 31);
+            this.label3.Location = new System.Drawing.Point(469, 9);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(200, 20);
+            this.label3.Size = new System.Drawing.Size(191, 20);
             this.label3.TabIndex = 17;
-            this.label3.Text = "Serial Port1 Data Received";
+            this.label3.Text = "Serial Port Data Received";
             // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.BackColor = System.Drawing.SystemColors.ButtonHighlight;
             this.ClientSize = new System.Drawing.Size(799, 261);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.textBox2);

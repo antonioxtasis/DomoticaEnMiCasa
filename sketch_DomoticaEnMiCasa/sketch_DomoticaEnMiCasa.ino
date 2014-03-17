@@ -1,14 +1,32 @@
-/*Proyecto Domótica en mi Casa
-
-  Sseñales
-  A -> Luces ON
-  B -> Luces OFF
-  C -> Clima ON; Calefacción OFF
-  D -> Clima OFF; Calefacción ON
-
-*/
-
-/*Sensores*/ /*Inputs analogos*/
+/*
+ *    ARCHIVO:   sketch_DomoticaEnMiCasa.ino
+ *      AUTOR:   JUAN CORDOVA
+ *      FECHA:   2013-03-09
+ *
+ *  PROPOSITO:   Proyecto Domotica en mi casa
+ *
+ * Layout de conexión Pines del ARDUINO
+ * ====================================
+ *  A0 conectado al Sensor LM35
+ *
+ * Pines del Sensor
+ * PIN 1 - VDD - 5V
+ * PIN 2 - SIGNAL
+ * PIN 3 - GND
+ * 
+ * Digital 2 IRQ conectado al Sensor TSL235R
+ *
+ * Pines del Sensor
+ * PIN 1 - GND
+ * PIN 2 - VDD - 5V
+ * PIN 3 - SIGNAL
+ *
+ */
+ 
+/*************************************************************/ 
+/*************** PINES DEL ARDUINO ***************************/
+/*************************************************************/
+/*Sensores*/
 const int s_temperatura = 0;
 const int s_iluminacion = 1;
 const int s_movimiento = 2;
@@ -18,11 +36,23 @@ const int a_luces = 13;
 const int a_clima = 12;
 const int a_calefaccion = 11;
 
+/*************************************************************/ 
+/***************** VARIABLES Y CONSTANTES ********************/
+/*************************************************************/ 
+// --
+
+
+/*************************************************************/ 
+/*************************** SETUP ***************************/
+/*************************************************************/
 void setup(){
   pinMode(a_luces, OUTPUT); //declaramos el PIN 13 como salida
   Serial.begin(9600);  
 }
 
+/*************************************************************/ 
+/************************  LOOP     **************************/ 
+/*************************************************************/ 
 void loop(){
   if(Serial.available()){
     
