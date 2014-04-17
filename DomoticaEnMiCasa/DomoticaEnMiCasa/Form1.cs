@@ -21,7 +21,9 @@ namespace DomoticaEnMiCasa
     public partial class Form1 : Form
     {
         //Global Variables
-        public static int val_max_luz = 0;
+        public static int val_max_luz = 990000;
+        public static int val_prender_clima = 20;
+        public static int val_prender_calefaccion = 15;
 
         // Add this variable 
         string RxString;
@@ -153,6 +155,70 @@ namespace DomoticaEnMiCasa
         }
 
 ////////comunicacion serial desde Arduino a HMI
+        private void controlador()
+        {
+            int valor_luminosidad_actual = 0;
+            int valor_movimiento_actual = 0;
+            double valor_temperatura_actual = 0.00;
+
+            string tipo_sensor = RxString.Substring(0, 8);
+
+            //Sensor Luminosidad
+            if (tipo_sensor == "Sensor_L")
+            {
+                valor_luminosidad_actual = int.Parse(RxString.Substring(10));
+                textBox3.Text = valor_luminosidad_actual.ToString();
+
+                if (valor_luminosidad_actual <= val_max_luz)
+                {
+                    //Prender luces
+                    this.picture_luces.Image = global::DomoticaEnMiCasa.Properties.Resources.on;
+                }
+                else
+                {
+                    //Apagar luces
+                    this.picture_luces.Image = global::DomoticaEnMiCasa.Properties.Resources.off;
+                }
+            }
+
+            //Sensor Movimiento
+            if (tipo_sensor == "Sensor_M")
+            {
+                valor_movimiento_actual = int.Parse(RxString.Substring(10));
+                if (valor_movimiento_actual == 1)
+                {
+                    this.picture_movimiento.Image = global::DomoticaEnMiCasa.Properties.Resources.mov_yes;
+                }
+                else if (valor_movimiento_actual == 0)
+                {
+                    this.picture_movimiento.Image = global::DomoticaEnMiCasa.Properties.Resources.mov_no;
+                }
+            }
+
+            //Sensor Temperatura
+            if (tipo_sensor == "Sensor_T")
+            {
+                valor_temperatura_actual = double.Parse(RxString.Substring(10));
+                txt_grados.Text = valor_temperatura_actual.ToString() + " °C";
+
+                if (valor_temperatura_actual >= val_prender_clima)
+                {
+                    this.picture_clima.Image = global::DomoticaEnMiCasa.Properties.Resources.snow;
+                    this.picture_calefaccion.Image = global::DomoticaEnMiCasa.Properties.Resources.mov_no;
+                }
+                else if (valor_temperatura_actual < val_prender_clima && valor_temperatura_actual > val_prender_calefaccion)
+                {
+                    this.picture_clima.Image = global::DomoticaEnMiCasa.Properties.Resources.mov_no;
+                    this.picture_calefaccion.Image = global::DomoticaEnMiCasa.Properties.Resources.mov_no;
+                }
+                else if (valor_temperatura_actual <= val_prender_calefaccion)
+                {
+                    this.picture_clima.Image = global::DomoticaEnMiCasa.Properties.Resources.mov_no;
+                    this.picture_calefaccion.Image = global::DomoticaEnMiCasa.Properties.Resources.sun;
+                }
+            }
+        }
+
         private void serialPort1_DataReceived_1(object sender, SerialDataReceivedEventArgs e)
         {
             //RxString = serialPort1.ReadExisting();
@@ -167,64 +233,6 @@ namespace DomoticaEnMiCasa
 
             //Llamada al controlador, el cual es el encargado de tomar las decisiones
             controlador();
-        }
-
-        private void controlador()
-        {
-            int valor_luminosidad_actual = 0;
-            int valor_movimiento_actual = 0;
-            double valor_temperatura_actual = 0.00;
-            
-            string tipo_sensor = RxString.Substring(0, 8);
-            
-            //Sensor Luminosidad
-            if (tipo_sensor == "Sensor_L") 
-            {
-                valor_luminosidad_actual = int.Parse(RxString.Substring(10));
-                textBox3.Text = valor_luminosidad_actual.ToString();
-
-                if (valor_luminosidad_actual <= val_max_luz)
-                {
-                    //Prender luces
-                    txt_luces.Text = "ON";
-                }
-                else 
-                {
-                    //Apagar luces
-                    txt_luces.Text = "OFF";
-                }
-            }
-
-            //Sensor Movimiento
-            if (tipo_sensor == "Sensor_M")
-            {
-                valor_movimiento_actual = int.Parse(RxString.Substring(10));
-                if (valor_movimiento_actual == 1) { txt_movimiento.Text = "Sí";  }
-                else if (valor_movimiento_actual == 0) { txt_movimiento.Text = "No"; }
-            }
-            
-            //Sensor Temperatura
-            if (tipo_sensor == "Sensor_T") 
-            {
-                valor_temperatura_actual = double.Parse(RxString.Substring(10));
-                txt_grados.Text = valor_temperatura_actual.ToString() + " °C";
-
-                if (valor_temperatura_actual >= 23.00) 
-                { 
-                    txt_clima.Text = "Sí"; 
-                    txt_calefaccion.Text = "No"; 
-                }
-                else if (valor_temperatura_actual <= 15)
-                {
-                    txt_clima.Text = "No";
-                    txt_calefaccion.Text = "Sí";
-                }
-                else if (valor_temperatura_actual <= 15)
-                {
-                    txt_clima.Text = "No";
-                    txt_calefaccion.Text = "No";
-                }
-            }
         }
         
         private void textBox2_KeyPress(object sender, KeyPressEventArgs e)
@@ -258,6 +266,10 @@ namespace DomoticaEnMiCasa
         private void Form1_Load(object sender, EventArgs e)
         {
             serialPort1.Open();
+
+            txt_prender_luces.Text = val_max_luz.ToString();
+            txt_prender_clima.Text = val_prender_clima.ToString();
+            txt_prender_calefaccion.Text = val_prender_calefaccion.ToString();
         }
 
         private void label5_Click(object sender, EventArgs e)
@@ -267,21 +279,33 @@ namespace DomoticaEnMiCasa
 
         private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
         {
-            if (comboBox1.SelectedIndex == 0)// "Oscuridad Total")
+            if (comboLuces.SelectedIndex == 0)// "Oscuridad Total")
             {
-                val_max_luz = 5000;
-                textBox1.Text = val_max_luz.ToString();
+                val_max_luz = 500000;
+                txt_prender_luces.Text = val_max_luz.ToString();
             }
-            else if (comboBox1.SelectedIndex == 1)//"Oscuridad Media")
+            else if (comboLuces.SelectedIndex == 1)//"Oscuridad Media")
             {
-                val_max_luz = 8000;
-                textBox1.Text = val_max_luz.ToString();
+                val_max_luz = 990000;
+                txt_prender_luces.Text = val_max_luz.ToString();
             }
         }
 
         private void btn_cerrar_Click(object sender, EventArgs e)
         {
             this.Close();
+        }
+
+        private void comboClima_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            val_prender_clima = int.Parse(comboClima.SelectedItem.ToString().Substring(0,2));
+            txt_prender_clima.Text = val_prender_clima.ToString();
+        }
+
+        private void comboCalefaccion_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            val_prender_calefaccion = int.Parse(comboCalefaccion.SelectedItem.ToString().Substring(0, 2));
+            txt_prender_calefaccion.Text = val_prender_calefaccion.ToString();
         }
     }
 }
