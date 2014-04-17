@@ -1,7 +1,7 @@
 /*
  *    ARCHIVO:   SensorDeLuz_Prueba.ino
  *      AUTOR:   JUAN CORDOVA
- *      FECHA:   2013-03-11
+ *      FECHA:   2013-04-16
  *
  *  PROPOSITO:   Probar individualmente el Sensor Convertidor de 
  *               intensidad de luz a frecuencia - TSL235R   
@@ -19,7 +19,9 @@
  
 /*************************************************************/ 
 /***************   VARIABLES Y CONSTANTES ********************/
-/*************************************************************/ 
+/*************************************************************/
+const int SENSOR_LUZ = 2; //entrada del sensor
+
 volatile unsigned long cont = 0;
 unsigned long old_cont = 0;
 unsigned long t = 0;
@@ -40,7 +42,7 @@ void setup()
 {
   Serial.begin(9600);//;(115200);
   Serial.println("START");
-  pinMode(2, INPUT);
+  pinMode(SENSOR_LUZ, INPUT);
   digitalWrite(2, HIGH);
   attachInterrupt(0, irq1, RISING);
 }
@@ -55,11 +57,12 @@ void loop()
     ultimo_digito = millis();
     t = cont;
     unsigned long hz = t - old_cont;
-    Serial.print("FREQ: "); 
+    //Serial.print("FREQ: ");
+    Serial.print("Sensor_L: "); 
     Serial.print(hz);
-    Serial.print("\t = "); 
-    Serial.print((hz+50)/100);  // +50 == se redondea el ultimo digito
-    Serial.println(" mW/m2");
+    //Serial.print("\t = "); 
+    Serial.println((hz + 50)/100);  // +50 == se redondea el ultimo digito
+    //Serial.println(" mW/m2");
     old_cont = t;
   }
 }

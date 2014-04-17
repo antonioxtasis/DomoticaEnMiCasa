@@ -1,7 +1,7 @@
 /*
  *    ARCHIVO:   SensorDeMovimiento_Prueba.ino
  *      AUTOR:   JUAN CORDOVA
- *      FECHA:   2013-03-17
+ *      FECHA:   2013-04-16
  *
  *  PROPOSITO:   Probar individualmente el Sensor Pirólico GH-718
  *
@@ -19,8 +19,8 @@
 /*************************************************************/ 
 /***************   VARIABLES Y CONSTANTES ********************/
 /*************************************************************/
-const int pin_sensor = 3; //PIR
-const int pin_led = 4;
+const int SENSOR_MOVIMENTO = 3; //PIR
+const int LED_ROJO = 4;
 
 int estado;
 
@@ -28,9 +28,9 @@ int estado;
 /*************************** SETUP ***************************/
 /*************************************************************/
 void setup(){
-  pinMode(pin_sensor, INPUT);
-  pinMode(pin_led, OUTPUT);
-  digitalWrite(pin_led, LOW);
+  pinMode(SENSOR_MOVIMENTO, INPUT);
+  pinMode(LED_ROJO, OUTPUT);
+  digitalWrite(LED_ROJO, LOW);
 }
 
 /*************************************************************/ 
@@ -41,14 +41,14 @@ void loop(){
   //LOW - el sensor SI detecta movimiento manda 0v como salida
   //HIGH - si NO detecta movimiento manda 3v como salida
   
-  estado = digitalRead(pin_sensor); //leemos el estado del sensor PIR
+  estado = digitalRead(SENSOR_MOVIMENTO); //leemos el estado del sensor PIR
   
   if(estado == HIGH)  //NO movimiento
   {
-    digitalWrite(pin_led, LOW);//apagamos el led
+    digitalWrite(LED_ROJO, LOW);//apagamos el led
   }
   else  //SI movimiento
   {
-    digitalWrite(pin_led, HIGH);//encendemos el led
+    digitalWrite(LED_ROJO, HIGH);//encendemos el led
   }
 }

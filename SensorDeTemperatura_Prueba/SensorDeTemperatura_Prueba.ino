@@ -1,7 +1,7 @@
 /*
  *    ARCHIVO:   SensorDeTemperatura_Prueba.ino
  *      AUTOR:   JUAN CORDOVA
- *      FECHA:   2013-03-09
+ *      FECHA:   2013-04-16
  *
  *  PROPOSITO:   Probar individualmente Sensor de temperatura LM35
  *
@@ -19,9 +19,9 @@
 /*************************************************************/ 
 /*************** PINES DEL ARDUINO ***************************/
 /*************************************************************/ 
-const int sensor = 0; //entrada del sensor
-const int led_rojo = 5; //led del pin 5 como salida
-const int led_azul = 6; //led del pin 6 como salida
+const int SENSOR_TEMPERATURA = 0; // A0 entrada del sensor
+const int LED_ROJO = 5; //D5 led del pin 5 como salida
+const int LED_AZUL = 6; //D5 led del pin 6 como salida
 
 /*************************************************************/ 
 /***************** VARIABLES Y CONSTANTES ********************/
@@ -35,8 +35,8 @@ int brillo;
 /*************************************************************/ 
 void setup(){
   Serial.begin(9600);//inicia la comunicacion serial
-  pinMode(led_rojo, OUTPUT);
-  pinMode(led_azul, OUTPUT);
+  pinMode(LED_ROJO, OUTPUT);
+  pinMode(LED_AZUL, OUTPUT);
   //Para cmabiar aRef a 1.1V, se usa el éste comando:
   analogReference(INTERNAL);
 }
@@ -48,14 +48,14 @@ void loop(){
   //El LM35 sólo produce tensiones de 0-1 V. 
   //El ADC utiliza 5V como el valor más alto posible. Esto es perder el 80% de la gama posible. 
   //Si cambia aRef a 1.1 V se obtiene casi la mayor resolución posible. 
-  milivolts = analogRead(sensor);
+  milivolts = analogRead(SENSOR_TEMPERATURA);
   temperatura = milivolts / 9.31;
   
   brillo = map(temperatura, 10, 40, 0, 255);//ajustamos map(variable a escalar, minimo, maximo, se traduce desde, hasta)
   brillo = constrain(brillo, 0, 255);//limitamos rango de brillo
   
-  analogWrite(led_rojo, brillo);
-  analogWrite(led_azul, 255 - brillo);
+  analogWrite(LED_ROJO, brillo);
+  analogWrite(LED_AZUL, 255 - brillo);
   
   Serial.print("Temperatura: ");
   Serial.println(temperatura);delay(2000);
