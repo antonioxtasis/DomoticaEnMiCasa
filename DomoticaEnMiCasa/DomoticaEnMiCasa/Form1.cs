@@ -25,6 +25,10 @@ namespace DomoticaEnMiCasa
         public static int val_prender_clima = 20;
         public static int val_prender_calefaccion = 15;
 
+        public static int luces_modo_auto= 1; //Modo Automatico LUCES
+        public static int clima_modo_auto = 1; //Modo Automatico CLIMA
+        public static int calefaccion_modo_auto = 1; //Modo Automatico CALEFACCIÓN
+
         // Add this variable 
         string RxString;
 
@@ -36,42 +40,6 @@ namespace DomoticaEnMiCasa
             serialPort1.PortName = "COM3";
             serialPort1.BaudRate = 9600;
             //serialPort1.Open();
-        }
-
-        private void btn_on_Click(object sender, EventArgs e)
-        {
-            serialPort1.Write("A");
-            textBox1.Text = "Luces ON";
-            btn_on.Enabled = false;
-            btn_off.Enabled = true;
-            btn_siri.BackColor = Color.WhiteSmoke;
-        }
-
-        private void btn_off_Click(object sender, EventArgs e)
-        {
-            serialPort1.Write("B");
-            textBox1.Text = "Luces OFF";
-            btn_on.Enabled = true;
-            btn_off.Enabled = false;
-            btn_siri.BackColor = Color.WhiteSmoke;
-        }
-
-        private void btn_encender_clima_Click(object sender, EventArgs e)
-        {
-            serialPort1.Write("C");
-            textBox1.Text = "Clima ON; Calefacción OFF";
-            btn_encender_clima.Enabled = false;
-            btn_encender_calefaccion.Enabled = true;
-            btn_siri.BackColor = Color.WhiteSmoke;
-        }
-
-        private void btn_encender_calefaccion_Click(object sender, EventArgs e)
-        {
-            serialPort1.Write("D");
-            textBox1.Text = "Clima OFF; Calefacción ON";
-            btn_encender_clima.Enabled = true;
-            btn_encender_calefaccion.Enabled = false;
-            btn_siri.BackColor = Color.WhiteSmoke;
         }
 
         private void btn_siri_Click(object sender, EventArgs e)
@@ -140,7 +108,7 @@ namespace DomoticaEnMiCasa
             {
                 _Synthesizer.Speak("Turn on Lights ");
                 btn_siri.BackColor = Color.WhiteSmoke;
-                btn_on_Click(sender, e);
+                //btn_on_Click(sender, e);
                 
             }
 
@@ -148,7 +116,7 @@ namespace DomoticaEnMiCasa
             {
                 _Synthesizer.Speak("Shut down Lights ");
                 btn_siri.BackColor = Color.WhiteSmoke;
-                btn_off_Click(sender, e);
+                //btn_off_Click(sender, e);
 
             }
 
@@ -169,16 +137,17 @@ namespace DomoticaEnMiCasa
                 valor_luminosidad_actual = int.Parse(RxString.Substring(10));
                 textBox3.Text = valor_luminosidad_actual.ToString();
 
-                if (valor_luminosidad_actual <= val_max_luz)
+                if (luces_modo_auto == 1) //Modo Automatico?
                 {
-                    //Prender luces
-                    this.picture_luces.Image = global::DomoticaEnMiCasa.Properties.Resources.on;
-                }
-                else
-                {
-                    //Apagar luces
-                    this.picture_luces.Image = global::DomoticaEnMiCasa.Properties.Resources.off;
-                }
+                    if (valor_luminosidad_actual <= val_max_luz)
+                    {
+                        encenderLuces_Auto();
+                    }
+                    else
+                    {
+                        apagarLuces_Auto();
+                    }
+                }                
             }
 
             //Sensor Movimiento
@@ -201,22 +170,75 @@ namespace DomoticaEnMiCasa
                 valor_temperatura_actual = double.Parse(RxString.Substring(10));
                 txt_grados.Text = valor_temperatura_actual.ToString() + " °C";
 
-                if (valor_temperatura_actual >= val_prender_clima)
+                if (clima_modo_auto == 1) //Modo Automatico?
                 {
-                    this.picture_clima.Image = global::DomoticaEnMiCasa.Properties.Resources.snow;
-                    this.picture_calefaccion.Image = global::DomoticaEnMiCasa.Properties.Resources.mov_no;
-                }
-                else if (valor_temperatura_actual < val_prender_clima && valor_temperatura_actual > val_prender_calefaccion)
-                {
-                    this.picture_clima.Image = global::DomoticaEnMiCasa.Properties.Resources.mov_no;
-                    this.picture_calefaccion.Image = global::DomoticaEnMiCasa.Properties.Resources.mov_no;
-                }
-                else if (valor_temperatura_actual <= val_prender_calefaccion)
-                {
-                    this.picture_clima.Image = global::DomoticaEnMiCasa.Properties.Resources.mov_no;
-                    this.picture_calefaccion.Image = global::DomoticaEnMiCasa.Properties.Resources.sun;
-                }
+                    if (valor_temperatura_actual >= val_prender_clima)
+                    {
+                        this.picture_clima.Image = global::DomoticaEnMiCasa.Properties.Resources.snow;
+                        serialPort1.Write("G");//encender clima
+                        this.picture_calefaccion.Image = global::DomoticaEnMiCasa.Properties.Resources.mov_no;
+                        serialPort1.Write("L");//apagar calefacción
+                    }
+                    else if (valor_temperatura_actual < val_prender_clima && valor_temperatura_actual > val_prender_calefaccion)
+                    {
+                        this.picture_clima.Image = global::DomoticaEnMiCasa.Properties.Resources.mov_no;
+                        serialPort1.Write("H");//apagar clima
+                        this.picture_calefaccion.Image = global::DomoticaEnMiCasa.Properties.Resources.mov_no;
+                        serialPort1.Write("L");//apagar calefacción
+                    }
+                    else if (valor_temperatura_actual <= val_prender_calefaccion)
+                    {
+                        this.picture_clima.Image = global::DomoticaEnMiCasa.Properties.Resources.mov_no;
+                        serialPort1.Write("H");//apagar clima
+                        this.picture_calefaccion.Image = global::DomoticaEnMiCasa.Properties.Resources.sun;
+                        serialPort1.Write("K");//encender calefacción
+                    }
+                }                
             }
+        }
+
+/// funciones LUCES
+        private void encenderLuces_Auto()
+        {
+            this.picture_luces.Image = global::DomoticaEnMiCasa.Properties.Resources.on;
+            serialPort1.Write("E");
+        }
+        private void apagarLuces_Auto()
+        {
+            this.picture_luces.Image = global::DomoticaEnMiCasa.Properties.Resources.off;
+            serialPort1.Write("F");
+        }
+        private void encenderLuces_Manual()
+        {
+            this.picture_luces.Image = global::DomoticaEnMiCasa.Properties.Resources.on;
+            serialPort1.Write("A");
+        }
+        private void apagarLuces_Manual()
+        {
+            this.picture_luces.Image = global::DomoticaEnMiCasa.Properties.Resources.off;
+            serialPort1.Write("B");
+        }
+/// funciones CLIMA        
+        private void encenderClima_Manual()
+        {
+            this.picture_clima.Image = global::DomoticaEnMiCasa.Properties.Resources.snow;
+            serialPort1.Write("G");
+        }
+        private void apagarClima_Manual()
+        {
+            this.picture_clima.Image = global::DomoticaEnMiCasa.Properties.Resources.mov_no;
+            serialPort1.Write("H");
+        }
+/// funciones CALEFACCION        
+        private void encenderCalefaccion_Manual()
+        {
+            this.picture_calefaccion.Image = global::DomoticaEnMiCasa.Properties.Resources.sun;
+            serialPort1.Write("K");
+        }
+        private void apagarCalefaccion_Manual()
+        {
+            this.picture_calefaccion.Image = global::DomoticaEnMiCasa.Properties.Resources.mov_no;
+            serialPort1.Write("L");
         }
 
         private void serialPort1_DataReceived_1(object sender, SerialDataReceivedEventArgs e)
@@ -236,7 +258,7 @@ namespace DomoticaEnMiCasa
         }
         
         private void textBox2_KeyPress(object sender, KeyPressEventArgs e)
-        {
+        {/*
             // If the port is closed, don't try to send a character.
             if (!serialPort1.IsOpen) return;
 
@@ -252,7 +274,7 @@ namespace DomoticaEnMiCasa
             // Set the KeyPress event as handled so the character won't
             // display locally. If you want it to display, omit the next line.
             e.Handled = true;
-        }
+        */}
         
         private void Form1_FormClosing_1(object sender, FormClosingEventArgs e)
         {
@@ -307,5 +329,80 @@ namespace DomoticaEnMiCasa
             val_prender_calefaccion = int.Parse(comboCalefaccion.SelectedItem.ToString().Substring(0, 2));
             txt_prender_calefaccion.Text = val_prender_calefaccion.ToString();
         }
+
+        private void btn_on_Click_1(object sender, EventArgs e)
+        {
+            encenderLuces_Manual();
+        }
+
+        private void btn_off_Click_1(object sender, EventArgs e)
+        {
+            apagarLuces_Manual();
+        }
+
+        private void chk_luces_manual_CheckedChanged(object sender, EventArgs e)
+        {
+            if (chk_luces_manual.CheckState.ToString() == "Checked")
+            {
+                encenderLuces_Manual();
+                luces_modo_auto = 0; //modo automatico desactivado
+                serialPort1.Write("C"); //manual - luces
+                btn_on.Enabled = true;
+                btn_off.Enabled = true;
+            }
+            else if (chk_luces_manual.CheckState.ToString() == "Unchecked")
+            {
+                encenderLuces_Auto();
+                luces_modo_auto = 1; //modo automatico activado
+                serialPort1.Write("D"); //auto - luces
+                btn_on.Enabled = false;
+                btn_off.Enabled = false;
+            }
+        }
+
+        private void chk_clima_manual_CheckedChanged(object sender, EventArgs e)
+        {
+            if (chk_clima_manual.CheckState.ToString() == "Checked")
+            {
+                encenderClima_Manual();
+                clima_modo_auto = 0; //modo automatico desactivado
+                serialPort1.Write("I"); //manual - luces
+                btn_encender_clima.Enabled = true;
+                btn_apagar_clima.Enabled = true;
+                btn_encender_calefaccion.Enabled = true;
+                btn_apagar_calefaccion.Enabled = true;
+            }
+            else if (chk_clima_manual.CheckState.ToString() == "Unchecked")
+            {
+                clima_modo_auto = 1; //modo automatico activado
+                serialPort1.Write("J"); //auto - luces
+                btn_encender_clima.Enabled = false;
+                btn_apagar_clima.Enabled = false;
+                btn_encender_calefaccion.Enabled = false;
+                btn_apagar_calefaccion.Enabled = false;
+            }
+        }
+
+        private void btn_encender_clima_Click_1(object sender, EventArgs e)
+        {
+            encenderClima_Manual();
+            btn_apagar_calefaccion_Click(sender, e);
+        }
+
+        private void btn_apagar_clima_Click(object sender, EventArgs e)
+        {
+            apagarClima_Manual();
+        }        
+
+        private void btn_encender_calefaccion_Click_1(object sender, EventArgs e)
+        {
+            encenderCalefaccion_Manual();
+            btn_apagar_clima_Click(sender, e);
+        }
+
+        private void btn_apagar_calefaccion_Click(object sender, EventArgs e)
+        {
+            apagarCalefaccion_Manual();
+        }        
     }
 }

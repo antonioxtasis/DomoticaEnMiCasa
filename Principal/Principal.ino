@@ -55,6 +55,22 @@ float temperatura;
 int milivolts;
 int brillo;
 
+//Otros actuadores
+const int LED_VERDE = 8;
+const int LED_AMARILLO = 9;
+const int LED_CALEF = 10;
+
+//Variables booleanas #Guardan el estado de los actuadores
+int estado_led_verde = 0;
+int modo_luces = 0;
+int estado_auto_led_verde = 0;
+
+int estado_led_amarillo = 0;
+int modo_clima = 0;
+
+int estado_led_calef = 0;
+int modo_calefaccion = 0;
+
 /*************************************************************/ 
 /***************   METODOS Y FUNCIONES    ********************/
 /*************************************************************/
@@ -70,9 +86,10 @@ void irq1()
 /*************************************************************/ 
 void setup() 
 {
-  //LUMINOSIDAD
   Serial.begin(9600);
-  Serial.println("START");
+  //Serial.println("START");
+  
+  //LUMINOSIDAD  
   pinMode(SENSOR_LUZ, INPUT);
   digitalWrite(2, HIGH);
   attachInterrupt(0, irq1, RISING);
@@ -86,16 +103,71 @@ void setup()
   pinMode(LED_ROJO_RGB, OUTPUT);
   pinMode(LED_AZUL_RGB, OUTPUT);
   analogReference(INTERNAL); //Para cmabiar aRef a 1.1V, se usa el éste comando
+  
+  //OTROS ACTUADORES
+  pinMode(LED_VERDE, OUTPUT);
+  pinMode(LED_AMARILLO, OUTPUT);
+  pinMode(LED_CALEF, OUTPUT);
 }
 
 /*************************************************************/ 
 /************************  LOOP     **************************/ 
 /*************************************************************/ 
 void loop() 
-{
+{  
+  if(Serial.available()){
+        //Recibe señal del HMI
+       int serial_input = Serial.read();
+       
+       //Codigos de LUCES
+       if(serial_input=='A'){estado_led_verde = 1;}//ON
+       if(serial_input=='B'){estado_led_verde = 0;}//OFF
+       if(serial_input=='C'){modo_luces = 1;}//manual
+       if(serial_input=='D'){modo_luces = 0;}//auto
+       if(serial_input=='E'){estado_auto_led_verde = 1;}//ON manual
+       if(serial_input=='F'){estado_auto_led_verde = 0;}//OFF auto}
+       
+       //Codigos de CLIMA
+       if(serial_input=='G'){estado_led_amarillo = 1;}//ON
+       if(serial_input=='H'){estado_led_amarillo = 0;}//OFF
+       if(serial_input=='I'){modo_clima = 1;}//manual
+       if(serial_input=='J'){modo_clima = 0;}//auto
+       
+       //Codigos de CALEFACCION      
+       if(serial_input=='K'){estado_led_calef = 1;}//ON
+       if(serial_input=='L'){estado_led_calef = 0;}//OFF
+  }
+  
+  
+  // -------------------- Luces -------------------- //
+  
+  if(modo_luces == 1) //Modo MANUAL Luces
+  {
+    // CHECK de los estados de las variables de los Actuadores
+    if(estado_led_verde == 1){ digitalWrite(LED_VERDE, LOW); }//led verde TURN ON
+    if(estado_led_verde == 0){ digitalWrite(LED_VERDE, HIGH); }//led verde TURN OFF
+  }
+  if(modo_luces == 0) //Modo AUTOMATICO Luces
+  {
+    // CHECK de los estados de las variables de los Actuadores
+    if(estado_auto_led_verde == 1){ digitalWrite(LED_VERDE, LOW); }//led verde TURN ON
+    if(estado_auto_led_verde == 0){ digitalWrite(LED_VERDE, HIGH); }//led verde TURN OFF
+  }
+
+  // -------------------- Clima -------------------- //  
+  
+    // CHECK de los estados de las variables de los Actuadores
+    if(estado_led_amarillo == 1){ digitalWrite(LED_AMARILLO, LOW); }// TURN ON
+    if(estado_led_amarillo == 0){ digitalWrite(LED_AMARILLO, HIGH); }// TURN OFF
+    
+   // -------------------- Calefaccion -------------------- //  
+  
+    // CHECK de los estados de las variables de los Actuadores
+    if(estado_led_calef == 1){ digitalWrite(LED_CALEF, LOW); }// TURN ON
+    if(estado_led_calef == 0){ digitalWrite(LED_CALEF, HIGH); }// TURN OFF
+  
   
   //LUMINOSIDAD
-  
   if (millis() - ultimo_digito >= 1000)
   {
     ultimo_digito = millis();
@@ -109,8 +181,6 @@ void loop()
     //Serial.println(" mW/m2");
     old_cont = t;
   }
-  
-  
   
   //MOVIMIENTO
   
@@ -148,5 +218,8 @@ void loop()
   
   Serial.print("Sensor_T: ");
   Serial.println(temperatura);
+  
+  Serial.flush();
+  
   delay(500);
 }

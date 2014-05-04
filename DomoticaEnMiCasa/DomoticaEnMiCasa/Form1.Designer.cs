@@ -32,12 +32,17 @@
             this.serialPort1 = new System.IO.Ports.SerialPort(this.components);
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
+            this.btn_siri = new System.Windows.Forms.PictureBox();
+            this.panel1 = new System.Windows.Forms.Panel();
+            this.picture_calefaccion = new System.Windows.Forms.PictureBox();
+            this.picture_clima = new System.Windows.Forms.PictureBox();
+            this.picture_movimiento = new System.Windows.Forms.PictureBox();
+            this.picture_luces = new System.Windows.Forms.PictureBox();
             this.txt_grados = new System.Windows.Forms.TextBox();
             this.label8 = new System.Windows.Forms.Label();
             this.label7 = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
             this.Luces = new System.Windows.Forms.Label();
-            this.textBox3 = new System.Windows.Forms.TextBox();
             this.btn_encender_calefaccion = new System.Windows.Forms.Button();
             this.btn_encender_clima = new System.Windows.Forms.Button();
             this.btn_off = new System.Windows.Forms.Button();
@@ -53,26 +58,26 @@
             this.label6 = new System.Windows.Forms.Label();
             this.comboLuces = new System.Windows.Forms.ComboBox();
             this.label4 = new System.Windows.Forms.Label();
-            this.textBox1 = new System.Windows.Forms.TextBox();
-            this.btn_cerrar = new System.Windows.Forms.Button();
             this.tabPage3 = new System.Windows.Forms.TabPage();
+            this.textBox3 = new System.Windows.Forms.TextBox();
+            this.textBox1 = new System.Windows.Forms.TextBox();
             this.label3 = new System.Windows.Forms.Label();
+            this.btn_cerrar = new System.Windows.Forms.Button();
             this.textBox2 = new System.Windows.Forms.TextBox();
-            this.panel1 = new System.Windows.Forms.Panel();
-            this.btn_siri = new System.Windows.Forms.PictureBox();
-            this.picture_calefaccion = new System.Windows.Forms.PictureBox();
-            this.picture_clima = new System.Windows.Forms.PictureBox();
-            this.picture_movimiento = new System.Windows.Forms.PictureBox();
-            this.picture_luces = new System.Windows.Forms.PictureBox();
+            this.chk_luces_manual = new System.Windows.Forms.CheckBox();
+            this.chk_clima_manual = new System.Windows.Forms.CheckBox();
+            this.btn_apagar_clima = new System.Windows.Forms.Button();
+            this.btn_apagar_calefaccion = new System.Windows.Forms.Button();
+            this.label1 = new System.Windows.Forms.Label();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
-            this.tabPage2.SuspendLayout();
-            this.tabPage3.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.btn_siri)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.picture_calefaccion)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.picture_clima)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.picture_movimiento)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.picture_luces)).BeginInit();
+            this.tabPage2.SuspendLayout();
+            this.tabPage3.SuspendLayout();
             this.SuspendLayout();
             // 
             // serialPort1
@@ -93,6 +98,11 @@
             // 
             // tabPage1
             // 
+            this.tabPage1.Controls.Add(this.label1);
+            this.tabPage1.Controls.Add(this.btn_apagar_calefaccion);
+            this.tabPage1.Controls.Add(this.btn_apagar_clima);
+            this.tabPage1.Controls.Add(this.chk_clima_manual);
+            this.tabPage1.Controls.Add(this.chk_luces_manual);
             this.tabPage1.Controls.Add(this.btn_siri);
             this.tabPage1.Controls.Add(this.panel1);
             this.tabPage1.Controls.Add(this.picture_calefaccion);
@@ -115,6 +125,60 @@
             this.tabPage1.TabIndex = 0;
             this.tabPage1.Text = "Monitor";
             this.tabPage1.UseVisualStyleBackColor = true;
+            // 
+            // btn_siri
+            // 
+            this.btn_siri.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btn_siri.Image = global::DomoticaEnMiCasa.Properties.Resources.speak;
+            this.btn_siri.Location = new System.Drawing.Point(423, 103);
+            this.btn_siri.Name = "btn_siri";
+            this.btn_siri.Size = new System.Drawing.Size(144, 133);
+            this.btn_siri.TabIndex = 49;
+            this.btn_siri.TabStop = false;
+            // 
+            // panel1
+            // 
+            this.panel1.BackColor = System.Drawing.Color.WhiteSmoke;
+            this.panel1.Location = new System.Drawing.Point(205, 8);
+            this.panel1.Name = "panel1";
+            this.panel1.Size = new System.Drawing.Size(10, 306);
+            this.panel1.TabIndex = 48;
+            // 
+            // picture_calefaccion
+            // 
+            this.picture_calefaccion.Image = global::DomoticaEnMiCasa.Properties.Resources.mov_no;
+            this.picture_calefaccion.Location = new System.Drawing.Point(136, 244);
+            this.picture_calefaccion.Name = "picture_calefaccion";
+            this.picture_calefaccion.Size = new System.Drawing.Size(40, 45);
+            this.picture_calefaccion.TabIndex = 47;
+            this.picture_calefaccion.TabStop = false;
+            // 
+            // picture_clima
+            // 
+            this.picture_clima.Image = global::DomoticaEnMiCasa.Properties.Resources.mov_no;
+            this.picture_clima.Location = new System.Drawing.Point(136, 174);
+            this.picture_clima.Name = "picture_clima";
+            this.picture_clima.Size = new System.Drawing.Size(40, 45);
+            this.picture_clima.TabIndex = 46;
+            this.picture_clima.TabStop = false;
+            // 
+            // picture_movimiento
+            // 
+            this.picture_movimiento.Image = global::DomoticaEnMiCasa.Properties.Resources.mov_no;
+            this.picture_movimiento.Location = new System.Drawing.Point(136, 106);
+            this.picture_movimiento.Name = "picture_movimiento";
+            this.picture_movimiento.Size = new System.Drawing.Size(40, 45);
+            this.picture_movimiento.TabIndex = 45;
+            this.picture_movimiento.TabStop = false;
+            // 
+            // picture_luces
+            // 
+            this.picture_luces.Image = global::DomoticaEnMiCasa.Properties.Resources.off;
+            this.picture_luces.Location = new System.Drawing.Point(136, 36);
+            this.picture_luces.Name = "picture_luces";
+            this.picture_luces.Size = new System.Drawing.Size(40, 45);
+            this.picture_luces.TabIndex = 44;
+            this.picture_luces.TabStop = false;
             // 
             // txt_grados
             // 
@@ -169,68 +233,65 @@
             this.Luces.TabIndex = 36;
             this.Luces.Text = "Luces:";
             // 
-            // textBox3
-            // 
-            this.textBox3.BackColor = System.Drawing.Color.OldLace;
-            this.textBox3.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textBox3.Location = new System.Drawing.Point(272, 4);
-            this.textBox3.Multiline = true;
-            this.textBox3.Name = "textBox3";
-            this.textBox3.ReadOnly = true;
-            this.textBox3.Size = new System.Drawing.Size(221, 25);
-            this.textBox3.TabIndex = 35;
-            // 
             // btn_encender_calefaccion
             // 
             this.btn_encender_calefaccion.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btn_encender_calefaccion.Enabled = false;
             this.btn_encender_calefaccion.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-            this.btn_encender_calefaccion.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btn_encender_calefaccion.ForeColor = System.Drawing.Color.DarkOliveGreen;
-            this.btn_encender_calefaccion.Location = new System.Drawing.Point(234, 242);
+            this.btn_encender_calefaccion.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btn_encender_calefaccion.ForeColor = System.Drawing.Color.YellowGreen;
+            this.btn_encender_calefaccion.Location = new System.Drawing.Point(234, 205);
             this.btn_encender_calefaccion.Name = "btn_encender_calefaccion";
-            this.btn_encender_calefaccion.Size = new System.Drawing.Size(129, 47);
+            this.btn_encender_calefaccion.Size = new System.Drawing.Size(55, 31);
             this.btn_encender_calefaccion.TabIndex = 29;
-            this.btn_encender_calefaccion.Text = "Encender Calefacción";
+            this.btn_encender_calefaccion.Text = "On";
             this.btn_encender_calefaccion.UseVisualStyleBackColor = true;
+            this.btn_encender_calefaccion.Click += new System.EventHandler(this.btn_encender_calefaccion_Click_1);
             // 
             // btn_encender_clima
             // 
             this.btn_encender_clima.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btn_encender_clima.Enabled = false;
             this.btn_encender_clima.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-            this.btn_encender_clima.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btn_encender_clima.ForeColor = System.Drawing.Color.DarkOliveGreen;
-            this.btn_encender_clima.Location = new System.Drawing.Point(234, 174);
+            this.btn_encender_clima.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btn_encender_clima.ForeColor = System.Drawing.Color.YellowGreen;
+            this.btn_encender_clima.Location = new System.Drawing.Point(234, 126);
             this.btn_encender_clima.Name = "btn_encender_clima";
-            this.btn_encender_clima.Size = new System.Drawing.Size(129, 47);
+            this.btn_encender_clima.Size = new System.Drawing.Size(55, 31);
             this.btn_encender_clima.TabIndex = 28;
-            this.btn_encender_clima.Text = "Encender Clima";
+            this.btn_encender_clima.Text = "On";
             this.btn_encender_clima.UseVisualStyleBackColor = true;
+            this.btn_encender_clima.Click += new System.EventHandler(this.btn_encender_clima_Click_1);
             // 
             // btn_off
             // 
             this.btn_off.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btn_off.Enabled = false;
             this.btn_off.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-            this.btn_off.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btn_off.ForeColor = System.Drawing.Color.DarkOliveGreen;
-            this.btn_off.Location = new System.Drawing.Point(234, 34);
+            this.btn_off.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btn_off.ForeColor = System.Drawing.Color.Maroon;
+            this.btn_off.Location = new System.Drawing.Point(308, 40);
             this.btn_off.Name = "btn_off";
-            this.btn_off.Size = new System.Drawing.Size(129, 47);
+            this.btn_off.Size = new System.Drawing.Size(55, 31);
             this.btn_off.TabIndex = 26;
-            this.btn_off.Text = "Apagar Luces";
+            this.btn_off.Text = "Off";
             this.btn_off.UseVisualStyleBackColor = true;
+            this.btn_off.Click += new System.EventHandler(this.btn_off_Click_1);
             // 
             // btn_on
             // 
             this.btn_on.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btn_on.Enabled = false;
             this.btn_on.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-            this.btn_on.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btn_on.ForeColor = System.Drawing.Color.DarkOliveGreen;
-            this.btn_on.Location = new System.Drawing.Point(234, 103);
+            this.btn_on.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btn_on.ForeColor = System.Drawing.Color.YellowGreen;
+            this.btn_on.Location = new System.Drawing.Point(234, 40);
             this.btn_on.Name = "btn_on";
-            this.btn_on.Size = new System.Drawing.Size(129, 47);
+            this.btn_on.Size = new System.Drawing.Size(55, 31);
             this.btn_on.TabIndex = 25;
-            this.btn_on.Text = "Encender Luces";
+            this.btn_on.Text = "On";
             this.btn_on.UseVisualStyleBackColor = true;
+            this.btn_on.Click += new System.EventHandler(this.btn_on_Click_1);
             // 
             // tabPage2
             // 
@@ -422,14 +483,49 @@
             this.label4.TabIndex = 28;
             this.label4.Text = "¿Cuándo prender las luces?";
             // 
+            // tabPage3
+            // 
+            this.tabPage3.Controls.Add(this.textBox2);
+            this.tabPage3.Controls.Add(this.textBox3);
+            this.tabPage3.Controls.Add(this.textBox1);
+            this.tabPage3.Controls.Add(this.label3);
+            this.tabPage3.Location = new System.Drawing.Point(4, 22);
+            this.tabPage3.Name = "tabPage3";
+            this.tabPage3.Padding = new System.Windows.Forms.Padding(3);
+            this.tabPage3.Size = new System.Drawing.Size(623, 322);
+            this.tabPage3.TabIndex = 2;
+            this.tabPage3.Text = "RT Log";
+            this.tabPage3.UseVisualStyleBackColor = true;
+            // 
+            // textBox3
+            // 
+            this.textBox3.BackColor = System.Drawing.Color.OldLace;
+            this.textBox3.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.textBox3.Location = new System.Drawing.Point(17, 62);
+            this.textBox3.Multiline = true;
+            this.textBox3.Name = "textBox3";
+            this.textBox3.ReadOnly = true;
+            this.textBox3.Size = new System.Drawing.Size(221, 25);
+            this.textBox3.TabIndex = 38;
+            // 
             // textBox1
             // 
             this.textBox1.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textBox1.Location = new System.Drawing.Point(499, 5);
+            this.textBox1.Location = new System.Drawing.Point(17, 93);
             this.textBox1.Name = "textBox1";
             this.textBox1.ReadOnly = true;
-            this.textBox1.Size = new System.Drawing.Size(93, 29);
-            this.textBox1.TabIndex = 27;
+            this.textBox1.Size = new System.Drawing.Size(221, 29);
+            this.textBox1.TabIndex = 37;
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label3.Location = new System.Drawing.Point(13, 23);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(243, 20);
+            this.label3.TabIndex = 36;
+            this.label3.Text = "Datos recibidos del Puerto Serial:";
             // 
             // btn_cerrar
             // 
@@ -445,94 +541,80 @@
             this.btn_cerrar.UseVisualStyleBackColor = false;
             this.btn_cerrar.Click += new System.EventHandler(this.btn_cerrar_Click);
             // 
-            // tabPage3
-            // 
-            this.tabPage3.Controls.Add(this.label3);
-            this.tabPage3.Controls.Add(this.textBox2);
-            this.tabPage3.Location = new System.Drawing.Point(4, 22);
-            this.tabPage3.Name = "tabPage3";
-            this.tabPage3.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage3.Size = new System.Drawing.Size(623, 322);
-            this.tabPage3.TabIndex = 2;
-            this.tabPage3.Text = "RT Log";
-            this.tabPage3.UseVisualStyleBackColor = true;
-            // 
-            // label3
-            // 
-            this.label3.AutoSize = true;
-            this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label3.Location = new System.Drawing.Point(13, 23);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(243, 20);
-            this.label3.TabIndex = 36;
-            this.label3.Text = "Datos recibidos del Puerto Serial:";
-            // 
             // textBox2
             // 
             this.textBox2.BackColor = System.Drawing.SystemColors.ActiveCaptionText;
             this.textBox2.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.textBox2.ForeColor = System.Drawing.Color.Chartreuse;
-            this.textBox2.Location = new System.Drawing.Point(274, 23);
+            this.textBox2.Location = new System.Drawing.Point(323, 23);
             this.textBox2.Multiline = true;
             this.textBox2.Name = "textBox2";
             this.textBox2.ReadOnly = true;
             this.textBox2.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-            this.textBox2.Size = new System.Drawing.Size(331, 275);
-            this.textBox2.TabIndex = 35;
+            this.textBox2.Size = new System.Drawing.Size(274, 275);
+            this.textBox2.TabIndex = 51;
+            this.textBox2.Text = ".";
             // 
-            // panel1
+            // chk_luces_manual
             // 
-            this.panel1.BackColor = System.Drawing.Color.WhiteSmoke;
-            this.panel1.Location = new System.Drawing.Point(205, 8);
-            this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(10, 306);
-            this.panel1.TabIndex = 48;
+            this.chk_luces_manual.AutoSize = true;
+            this.chk_luces_manual.Location = new System.Drawing.Point(234, 17);
+            this.chk_luces_manual.Name = "chk_luces_manual";
+            this.chk_luces_manual.Size = new System.Drawing.Size(135, 17);
+            this.chk_luces_manual.TabIndex = 50;
+            this.chk_luces_manual.Text = "LUCES (Modo Manual)";
+            this.chk_luces_manual.UseVisualStyleBackColor = true;
+            this.chk_luces_manual.CheckedChanged += new System.EventHandler(this.chk_luces_manual_CheckedChanged);
             // 
-            // btn_siri
+            // chk_clima_manual
             // 
-            this.btn_siri.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btn_siri.Image = global::DomoticaEnMiCasa.Properties.Resources.speak;
-            this.btn_siri.Location = new System.Drawing.Point(423, 103);
-            this.btn_siri.Name = "btn_siri";
-            this.btn_siri.Size = new System.Drawing.Size(144, 133);
-            this.btn_siri.TabIndex = 49;
-            this.btn_siri.TabStop = false;
+            this.chk_clima_manual.AutoSize = true;
+            this.chk_clima_manual.Location = new System.Drawing.Point(234, 103);
+            this.chk_clima_manual.Name = "chk_clima_manual";
+            this.chk_clima_manual.Size = new System.Drawing.Size(132, 17);
+            this.chk_clima_manual.TabIndex = 51;
+            this.chk_clima_manual.Text = "CLIMA (Modo Manual)";
+            this.chk_clima_manual.UseVisualStyleBackColor = true;
+            this.chk_clima_manual.CheckedChanged += new System.EventHandler(this.chk_clima_manual_CheckedChanged);
             // 
-            // picture_calefaccion
+            // btn_apagar_clima
             // 
-            this.picture_calefaccion.Image = global::DomoticaEnMiCasa.Properties.Resources.mov_no;
-            this.picture_calefaccion.Location = new System.Drawing.Point(136, 244);
-            this.picture_calefaccion.Name = "picture_calefaccion";
-            this.picture_calefaccion.Size = new System.Drawing.Size(40, 45);
-            this.picture_calefaccion.TabIndex = 47;
-            this.picture_calefaccion.TabStop = false;
+            this.btn_apagar_clima.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btn_apagar_clima.Enabled = false;
+            this.btn_apagar_clima.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.btn_apagar_clima.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btn_apagar_clima.ForeColor = System.Drawing.Color.Maroon;
+            this.btn_apagar_clima.Location = new System.Drawing.Point(308, 126);
+            this.btn_apagar_clima.Name = "btn_apagar_clima";
+            this.btn_apagar_clima.Size = new System.Drawing.Size(55, 31);
+            this.btn_apagar_clima.TabIndex = 52;
+            this.btn_apagar_clima.Text = "Off";
+            this.btn_apagar_clima.UseVisualStyleBackColor = true;
+            this.btn_apagar_clima.Click += new System.EventHandler(this.btn_apagar_clima_Click);
             // 
-            // picture_clima
+            // btn_apagar_calefaccion
             // 
-            this.picture_clima.Image = global::DomoticaEnMiCasa.Properties.Resources.mov_no;
-            this.picture_clima.Location = new System.Drawing.Point(136, 174);
-            this.picture_clima.Name = "picture_clima";
-            this.picture_clima.Size = new System.Drawing.Size(40, 45);
-            this.picture_clima.TabIndex = 46;
-            this.picture_clima.TabStop = false;
+            this.btn_apagar_calefaccion.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btn_apagar_calefaccion.Enabled = false;
+            this.btn_apagar_calefaccion.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.btn_apagar_calefaccion.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btn_apagar_calefaccion.ForeColor = System.Drawing.Color.Maroon;
+            this.btn_apagar_calefaccion.Location = new System.Drawing.Point(308, 205);
+            this.btn_apagar_calefaccion.Name = "btn_apagar_calefaccion";
+            this.btn_apagar_calefaccion.Size = new System.Drawing.Size(55, 31);
+            this.btn_apagar_calefaccion.TabIndex = 54;
+            this.btn_apagar_calefaccion.Text = "Off";
+            this.btn_apagar_calefaccion.UseVisualStyleBackColor = true;
+            this.btn_apagar_calefaccion.Click += new System.EventHandler(this.btn_apagar_calefaccion_Click);
             // 
-            // picture_movimiento
+            // label1
             // 
-            this.picture_movimiento.Image = global::DomoticaEnMiCasa.Properties.Resources.mov_no;
-            this.picture_movimiento.Location = new System.Drawing.Point(136, 106);
-            this.picture_movimiento.Name = "picture_movimiento";
-            this.picture_movimiento.Size = new System.Drawing.Size(40, 45);
-            this.picture_movimiento.TabIndex = 45;
-            this.picture_movimiento.TabStop = false;
-            // 
-            // picture_luces
-            // 
-            this.picture_luces.Image = global::DomoticaEnMiCasa.Properties.Resources.off;
-            this.picture_luces.Location = new System.Drawing.Point(136, 36);
-            this.picture_luces.Name = "picture_luces";
-            this.picture_luces.Size = new System.Drawing.Size(40, 45);
-            this.picture_luces.TabIndex = 44;
-            this.picture_luces.TabStop = false;
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(231, 174);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(80, 13);
+            this.label1.TabIndex = 55;
+            this.label1.Text = "CALEFACCIÓN";
             // 
             // Form1
             // 
@@ -542,8 +624,6 @@
             this.ClientSize = new System.Drawing.Size(631, 381);
             this.Controls.Add(this.btn_cerrar);
             this.Controls.Add(this.tabControl1);
-            this.Controls.Add(this.textBox3);
-            this.Controls.Add(this.textBox1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Name = "Form1";
             this.SizeGripStyle = System.Windows.Forms.SizeGripStyle.Show;
@@ -554,17 +634,16 @@
             this.tabControl1.ResumeLayout(false);
             this.tabPage1.ResumeLayout(false);
             this.tabPage1.PerformLayout();
-            this.tabPage2.ResumeLayout(false);
-            this.tabPage2.PerformLayout();
-            this.tabPage3.ResumeLayout(false);
-            this.tabPage3.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.btn_siri)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.picture_calefaccion)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.picture_clima)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.picture_movimiento)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.picture_luces)).EndInit();
+            this.tabPage2.ResumeLayout(false);
+            this.tabPage2.PerformLayout();
+            this.tabPage3.ResumeLayout(false);
+            this.tabPage3.PerformLayout();
             this.ResumeLayout(false);
-            this.PerformLayout();
 
         }
 
@@ -576,10 +655,8 @@
         private System.Windows.Forms.Label label7;
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.Label Luces;
-        private System.Windows.Forms.TextBox textBox3;
         private System.Windows.Forms.Button btn_encender_calefaccion;
         private System.Windows.Forms.Button btn_encender_clima;
-        private System.Windows.Forms.TextBox textBox1;
         private System.Windows.Forms.Button btn_off;
         private System.Windows.Forms.Button btn_on;
         private System.Windows.Forms.TabPage tabPage2;
@@ -602,9 +679,16 @@
         private System.Windows.Forms.PictureBox picture_calefaccion;
         private System.Windows.Forms.TabPage tabPage3;
         private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.TextBox textBox2;
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.PictureBox btn_siri;
+        private System.Windows.Forms.TextBox textBox3;
+        private System.Windows.Forms.TextBox textBox1;
+        private System.Windows.Forms.TextBox textBox2;
+        private System.Windows.Forms.CheckBox chk_luces_manual;
+        private System.Windows.Forms.CheckBox chk_clima_manual;
+        private System.Windows.Forms.Button btn_apagar_clima;
+        private System.Windows.Forms.Button btn_apagar_calefaccion;
+        private System.Windows.Forms.Label label1;
     }
 }
 
