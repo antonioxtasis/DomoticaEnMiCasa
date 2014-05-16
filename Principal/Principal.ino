@@ -1,7 +1,7 @@
 /*
  *    ARCHIVO:   Principal.ino
  *      AUTOR:   JUAN CORDOVA
- *      FECHA:   2013-04-16
+ *      FECHA:   2014-05-15
  *
  *  PROPOSITO:   Programa del microcontrolador.
  *               Convivencia de los 3 sensores: luminosidad, temperatura y movimiento.   
@@ -56,7 +56,7 @@ int milivolts;
 int brillo;
 
 //Otros actuadores
-const int LED_VERDE = 8;
+const int LED_VERDE = 12;
 const int LED_AMARILLO = 9;
 const int LED_CALEF = 10;
 

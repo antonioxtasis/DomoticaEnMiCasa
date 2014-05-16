@@ -32,6 +32,11 @@
             this.serialPort1 = new System.IO.Ports.SerialPort(this.components);
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
+            this.label1 = new System.Windows.Forms.Label();
+            this.btn_apagar_calefaccion = new System.Windows.Forms.Button();
+            this.btn_apagar_clima = new System.Windows.Forms.Button();
+            this.chk_clima_manual = new System.Windows.Forms.CheckBox();
+            this.chk_luces_manual = new System.Windows.Forms.CheckBox();
             this.btn_siri = new System.Windows.Forms.PictureBox();
             this.panel1 = new System.Windows.Forms.Panel();
             this.picture_calefaccion = new System.Windows.Forms.PictureBox();
@@ -59,16 +64,11 @@
             this.comboLuces = new System.Windows.Forms.ComboBox();
             this.label4 = new System.Windows.Forms.Label();
             this.tabPage3 = new System.Windows.Forms.TabPage();
+            this.textBox2 = new System.Windows.Forms.TextBox();
             this.textBox3 = new System.Windows.Forms.TextBox();
             this.textBox1 = new System.Windows.Forms.TextBox();
             this.label3 = new System.Windows.Forms.Label();
             this.btn_cerrar = new System.Windows.Forms.Button();
-            this.textBox2 = new System.Windows.Forms.TextBox();
-            this.chk_luces_manual = new System.Windows.Forms.CheckBox();
-            this.chk_clima_manual = new System.Windows.Forms.CheckBox();
-            this.btn_apagar_clima = new System.Windows.Forms.Button();
-            this.btn_apagar_calefaccion = new System.Windows.Forms.Button();
-            this.label1 = new System.Windows.Forms.Label();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.btn_siri)).BeginInit();
@@ -126,6 +126,67 @@
             this.tabPage1.Text = "Monitor";
             this.tabPage1.UseVisualStyleBackColor = true;
             // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(231, 174);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(80, 13);
+            this.label1.TabIndex = 55;
+            this.label1.Text = "CALEFACCIÓN";
+            // 
+            // btn_apagar_calefaccion
+            // 
+            this.btn_apagar_calefaccion.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btn_apagar_calefaccion.Enabled = false;
+            this.btn_apagar_calefaccion.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.btn_apagar_calefaccion.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btn_apagar_calefaccion.ForeColor = System.Drawing.Color.Maroon;
+            this.btn_apagar_calefaccion.Location = new System.Drawing.Point(308, 205);
+            this.btn_apagar_calefaccion.Name = "btn_apagar_calefaccion";
+            this.btn_apagar_calefaccion.Size = new System.Drawing.Size(55, 31);
+            this.btn_apagar_calefaccion.TabIndex = 54;
+            this.btn_apagar_calefaccion.Text = "Off";
+            this.btn_apagar_calefaccion.UseVisualStyleBackColor = true;
+            this.btn_apagar_calefaccion.Click += new System.EventHandler(this.btn_apagar_calefaccion_Click);
+            // 
+            // btn_apagar_clima
+            // 
+            this.btn_apagar_clima.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btn_apagar_clima.Enabled = false;
+            this.btn_apagar_clima.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.btn_apagar_clima.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btn_apagar_clima.ForeColor = System.Drawing.Color.Maroon;
+            this.btn_apagar_clima.Location = new System.Drawing.Point(308, 126);
+            this.btn_apagar_clima.Name = "btn_apagar_clima";
+            this.btn_apagar_clima.Size = new System.Drawing.Size(55, 31);
+            this.btn_apagar_clima.TabIndex = 52;
+            this.btn_apagar_clima.Text = "Off";
+            this.btn_apagar_clima.UseVisualStyleBackColor = true;
+            this.btn_apagar_clima.Click += new System.EventHandler(this.btn_apagar_clima_Click);
+            // 
+            // chk_clima_manual
+            // 
+            this.chk_clima_manual.AutoSize = true;
+            this.chk_clima_manual.Location = new System.Drawing.Point(234, 103);
+            this.chk_clima_manual.Name = "chk_clima_manual";
+            this.chk_clima_manual.Size = new System.Drawing.Size(132, 17);
+            this.chk_clima_manual.TabIndex = 51;
+            this.chk_clima_manual.Text = "CLIMA (Modo Manual)";
+            this.chk_clima_manual.UseVisualStyleBackColor = true;
+            this.chk_clima_manual.CheckedChanged += new System.EventHandler(this.chk_clima_manual_CheckedChanged);
+            // 
+            // chk_luces_manual
+            // 
+            this.chk_luces_manual.AutoSize = true;
+            this.chk_luces_manual.Location = new System.Drawing.Point(234, 17);
+            this.chk_luces_manual.Name = "chk_luces_manual";
+            this.chk_luces_manual.Size = new System.Drawing.Size(135, 17);
+            this.chk_luces_manual.TabIndex = 50;
+            this.chk_luces_manual.Text = "LUCES (Modo Manual)";
+            this.chk_luces_manual.UseVisualStyleBackColor = true;
+            this.chk_luces_manual.CheckedChanged += new System.EventHandler(this.chk_luces_manual_CheckedChanged);
+            // 
             // btn_siri
             // 
             this.btn_siri.Cursor = System.Windows.Forms.Cursors.Hand;
@@ -135,6 +196,7 @@
             this.btn_siri.Size = new System.Drawing.Size(144, 133);
             this.btn_siri.TabIndex = 49;
             this.btn_siri.TabStop = false;
+            this.btn_siri.Click += new System.EventHandler(this.btn_siri_Click_1);
             // 
             // panel1
             // 
@@ -497,6 +559,20 @@
             this.tabPage3.Text = "RT Log";
             this.tabPage3.UseVisualStyleBackColor = true;
             // 
+            // textBox2
+            // 
+            this.textBox2.BackColor = System.Drawing.SystemColors.ActiveCaptionText;
+            this.textBox2.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.textBox2.ForeColor = System.Drawing.Color.Chartreuse;
+            this.textBox2.Location = new System.Drawing.Point(323, 23);
+            this.textBox2.Multiline = true;
+            this.textBox2.Name = "textBox2";
+            this.textBox2.ReadOnly = true;
+            this.textBox2.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
+            this.textBox2.Size = new System.Drawing.Size(274, 275);
+            this.textBox2.TabIndex = 51;
+            this.textBox2.Text = ".";
+            // 
             // textBox3
             // 
             this.textBox3.BackColor = System.Drawing.Color.OldLace;
@@ -540,81 +616,6 @@
             this.btn_cerrar.Text = "X";
             this.btn_cerrar.UseVisualStyleBackColor = false;
             this.btn_cerrar.Click += new System.EventHandler(this.btn_cerrar_Click);
-            // 
-            // textBox2
-            // 
-            this.textBox2.BackColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.textBox2.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textBox2.ForeColor = System.Drawing.Color.Chartreuse;
-            this.textBox2.Location = new System.Drawing.Point(323, 23);
-            this.textBox2.Multiline = true;
-            this.textBox2.Name = "textBox2";
-            this.textBox2.ReadOnly = true;
-            this.textBox2.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-            this.textBox2.Size = new System.Drawing.Size(274, 275);
-            this.textBox2.TabIndex = 51;
-            this.textBox2.Text = ".";
-            // 
-            // chk_luces_manual
-            // 
-            this.chk_luces_manual.AutoSize = true;
-            this.chk_luces_manual.Location = new System.Drawing.Point(234, 17);
-            this.chk_luces_manual.Name = "chk_luces_manual";
-            this.chk_luces_manual.Size = new System.Drawing.Size(135, 17);
-            this.chk_luces_manual.TabIndex = 50;
-            this.chk_luces_manual.Text = "LUCES (Modo Manual)";
-            this.chk_luces_manual.UseVisualStyleBackColor = true;
-            this.chk_luces_manual.CheckedChanged += new System.EventHandler(this.chk_luces_manual_CheckedChanged);
-            // 
-            // chk_clima_manual
-            // 
-            this.chk_clima_manual.AutoSize = true;
-            this.chk_clima_manual.Location = new System.Drawing.Point(234, 103);
-            this.chk_clima_manual.Name = "chk_clima_manual";
-            this.chk_clima_manual.Size = new System.Drawing.Size(132, 17);
-            this.chk_clima_manual.TabIndex = 51;
-            this.chk_clima_manual.Text = "CLIMA (Modo Manual)";
-            this.chk_clima_manual.UseVisualStyleBackColor = true;
-            this.chk_clima_manual.CheckedChanged += new System.EventHandler(this.chk_clima_manual_CheckedChanged);
-            // 
-            // btn_apagar_clima
-            // 
-            this.btn_apagar_clima.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btn_apagar_clima.Enabled = false;
-            this.btn_apagar_clima.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-            this.btn_apagar_clima.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btn_apagar_clima.ForeColor = System.Drawing.Color.Maroon;
-            this.btn_apagar_clima.Location = new System.Drawing.Point(308, 126);
-            this.btn_apagar_clima.Name = "btn_apagar_clima";
-            this.btn_apagar_clima.Size = new System.Drawing.Size(55, 31);
-            this.btn_apagar_clima.TabIndex = 52;
-            this.btn_apagar_clima.Text = "Off";
-            this.btn_apagar_clima.UseVisualStyleBackColor = true;
-            this.btn_apagar_clima.Click += new System.EventHandler(this.btn_apagar_clima_Click);
-            // 
-            // btn_apagar_calefaccion
-            // 
-            this.btn_apagar_calefaccion.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btn_apagar_calefaccion.Enabled = false;
-            this.btn_apagar_calefaccion.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-            this.btn_apagar_calefaccion.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btn_apagar_calefaccion.ForeColor = System.Drawing.Color.Maroon;
-            this.btn_apagar_calefaccion.Location = new System.Drawing.Point(308, 205);
-            this.btn_apagar_calefaccion.Name = "btn_apagar_calefaccion";
-            this.btn_apagar_calefaccion.Size = new System.Drawing.Size(55, 31);
-            this.btn_apagar_calefaccion.TabIndex = 54;
-            this.btn_apagar_calefaccion.Text = "Off";
-            this.btn_apagar_calefaccion.UseVisualStyleBackColor = true;
-            this.btn_apagar_calefaccion.Click += new System.EventHandler(this.btn_apagar_calefaccion_Click);
-            // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(231, 174);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(80, 13);
-            this.label1.TabIndex = 55;
-            this.label1.Text = "CALEFACCIÓN";
             // 
             // Form1
             // 

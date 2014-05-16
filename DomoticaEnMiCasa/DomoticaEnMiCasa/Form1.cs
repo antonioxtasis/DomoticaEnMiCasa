@@ -15,6 +15,7 @@ using System.Speech.Synthesis;
 using System.Media;
 //Assert
 using System.Diagnostics;
+using System.Globalization;
 
 namespace DomoticaEnMiCasa
 {
@@ -39,10 +40,10 @@ namespace DomoticaEnMiCasa
             InitializeComponent();
             serialPort1.PortName = "COM3";
             serialPort1.BaudRate = 9600;
-            //serialPort1.Open();
+            serialPort1.Open();
         }
 
-        private void btn_siri_Click(object sender, EventArgs e)
+        private void btn_siri_Click_1(object sender, EventArgs e)
         {
             //**SONIDO DEL SISTEMA**//
             System.Media.SystemSounds.Exclamation.Play();
@@ -50,7 +51,7 @@ namespace DomoticaEnMiCasa
             btn_siri.BackColor = Color.Gray;
 
             // Initialize a SpeechRecognitionEngine object and set its input.
-            recognizer = new SpeechRecognitionEngine(new System.Globalization.CultureInfo("en-Us"));
+            recognizer = new SpeechRecognitionEngine(new System.Globalization.CultureInfo("en-ES"));
             recognizer.SetInputToDefaultAudioDevice();
 
             // Add a handler for the LoadGrammarCompleted event.
@@ -287,7 +288,7 @@ namespace DomoticaEnMiCasa
 
         private void Form1_Load(object sender, EventArgs e)
         {
-            serialPort1.Open();
+            //serialPort1.Open();
 
             txt_prender_luces.Text = val_max_luz.ToString();
             txt_prender_clima.Text = val_prender_clima.ToString();
@@ -403,6 +404,8 @@ namespace DomoticaEnMiCasa
         private void btn_apagar_calefaccion_Click(object sender, EventArgs e)
         {
             apagarCalefaccion_Manual();
-        }        
+        }
+
+           
     }
 }
